@@ -9,11 +9,25 @@ class ContentRating extends Component {
         likes: 0,
         dislikes: 0,
         totalRatings: 0,
+        /*This code has two varations based on the two scenarios.
+        *The handleLike function works for the scenario if the like button was focused on the user specifically
+        *For Example: A social media post, a user can like or dislike a post as many times as they like
+        * but the number of total likes will only vary by 1. 
+        * The handleDislike function is for the scenario where we are tracking the total likes based on the post
+        * meaning it is a tally of total likes and dislikes from multiple users instead of focusing from a singular user persepctive */
         handleLike:()=> {
-            this.setState((prevState) => ({
-                likes: prevState.likes +1,
-                totalRatings: prevState.totalRatings +1
-            }));
+            if(this.state.likes == 1){
+                this.setState((prevState) => ({
+                    likes: prevState.likes -1,
+                    totalRatings: prevState.totalRatings -1
+                }));
+            }else{
+                this.setState((prevState) => ({
+                    likes: prevState.likes +1,
+                    totalRatings: prevState.totalRatings +1
+                }));
+            }
+            
         },
         handleDislike:()=> {
             this.setState((prevState) => ({
